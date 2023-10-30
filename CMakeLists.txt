@@ -7,7 +7,8 @@ qt_standard_project_setup()
 
 qt_add_executable(Server
     main.cpp
-    http_server.h http_server.cpp
+    http_server.h
+    http_server.cpp
 )
 
 target_link_libraries(Server PRIVATE
