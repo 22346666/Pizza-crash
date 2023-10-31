@@ -5,7 +5,7 @@ Http_server::Http_server(QObject *parent)
 {
     ip.setAddress("192.168.1.105");
     http_server.route("/", [this]() {
-        QHttpServerResponse response(read_HTML(html_folder_path+"laba_2.html"), QHttpServerResponse::StatusCode::Ok);
+        QHttpServerResponse response(read_HTML(html_folder_path+"laba_3.html"), QHttpServerResponse::StatusCode::Ok);
         return std::move(response);
     });
 

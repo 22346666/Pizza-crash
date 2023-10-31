@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(Server LANGUAGES CXX)
 
-find_package(Qt6 REQUIRED COMPONENTS HttpServer)
+find_package(Qt6 REQUIRED COMPONENTS HttpServer Sql)
 
 qt_standard_project_setup()
 
@@ -9,10 +9,12 @@ qt_add_executable(Server
     main.cpp
     http_server.h
     http_server.cpp
+    database.h database.cpp
 )
 
 target_link_libraries(Server PRIVATE
     Qt6::HttpServer
+    Qt6::Sql
 )
 
 install(TARGETS Server
