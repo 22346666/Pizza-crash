@@ -1,5 +1,17 @@
 #include "user.h"
 
+User::User(const QSqlDatabase& db, const QString email)
+{
+    QSqlQuery query(db);
+    query.exec(QString("SELECT * FROM users WHERE UserEmail = '%1'").arg(email));
+    query.next();
+    name=query.value(1).toString();
+    surname=query.value(2).toString();
+    this->email=query.value(3).toString();
+    password=query.value(4).toString();
+    qInfo() << name << surname << email << password;
+}
+
 User::User(const QList<QPair<QString, QString>> &form)
 {
     for(auto &i : form) {
@@ -19,14 +31,15 @@ User::User(const QList<QPair<QString, QString>> &form)
     }
 }
 
-bool User::create_in_db(const QSqlDatabase &db)
+bool User::create(const QSqlDatabase &db)
 {
     if(email=="") {
         return false;
     }
     if(!check_exist(db)) {
         QSqlQuery query(db);
-        query.exec(QString("INSERT INTO users (UserName, UserSurname, UserEmail, UserPassword, UserGender, UserComp) values ('%1', '%2', '%3', '%4', '%5', '%6')").arg(name, surname, email, password, gender, comp));
+        query.exec(QString("INSERT INTO users (UserName, UserSurname, UserEmail, UserPassword) values ('%1', '%2', '%3', '%4')").arg(name, surname, email, password));
+        qInfo() << query.lastError();
         return true;
     }
     return false;
@@ -54,6 +67,46 @@ bool User::password_check(const QSqlDatabase &db)
     }
     qInfo() << "Password is not confirmed";
     return false;
+}
+
+QJsonObject User::get()
+{
+    QJsonObject user;
+    user.insert("Name", QJsonValue(name));
+    user.insert("Surname", QJsonValue(surname));
+    user.insert("Email", QJsonValue(email));
+    user.insert("Password", QJsonValue(password));
+    return user;
+}
+
+QString User::get_name() const
+{
+    return name;
+}
+
+QString User::get_email() const
+{
+    return email;
+}
+
+QString User::get_surname() const
+{
+    return surname;
+}
+
+QString User::get_password() const
+{
+    return password;
+}
+
+QString User::get_gender() const
+{
+    return gender;
+}
+
+QString User::get_comp() const
+{
+    return comp;
 }
 
 

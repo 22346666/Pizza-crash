@@ -11,10 +11,13 @@
 
 #include <QObject>
 #include <QFile>
+#include <QDir>
 #include <QString>
 #include <QHostInfo>
 #include "database.h"
-#include "user.h"
+#include <QtTest/QTest>
+#include <QUrl>
+
 
 class Http_server : public QObject
 {
@@ -28,19 +31,30 @@ public:
     QHostAddress get_ip() const;
     void set_ip(const QHostAddress &newIp);
     QByteArray read_file(const QString& path) const;
+    bool has_id_cookie(const QHttpServerRequest& request);
 
 private:
     static inline QString host(const QHttpServerRequest &request);
-    QHttpServerResponse get_page(const QHttpServerRequest &request, const QString &page_name);
+    QHttpServerResponse send_file(const QHttpServerRequest &request, const QString &page_name, const QString& files_folder_path, const QByteArray type = "text\\html");
+    QHttpServerResponse send_json(const QHttpServerRequest &request, const QJsonObject &json);
     QHttpServerResponse redirect(const QHttpServerRequest &request, const QString &endpoint);
+    QHttpServerResponse cookie_redirect(const QHttpServerRequest &request, const QString &endpoint, QByteArray email_value);
 
     QHttpServer http_server;
     Database db;
     QHostAddress ip;
-    QString domain_name = "https://pizzacrash.servebeer.com";
+    QString http_domain_name = "https://pizzacrash.servebeer.com";
+    QString domain_name = "pizzacrash.servebeer.com";
     const quint16 port = 80;
     const quint16 ssl_port = 443;
-    QString files_folder_path = "Files/";
+    QString html_path = ":/files/html/";
+    QString scripts_path = ":/files/js/";
+    QString css_path = ":/files/css/";
+    QHttpServerRouter* router;
+
+    void route_pages();
+    void route_css();
+    void route_scripts();
 signals:
 
 };

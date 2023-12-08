@@ -11,12 +11,15 @@ qt_add_executable(Server
     http_server.cpp
     database.h database.cpp
     user.h user.cpp
+    cookie.h cookie.cpp
+
 )
 
 target_link_libraries(Server PRIVATE
     Qt6::HttpServer
     Qt6::Sql
 )
+
 
 install(TARGETS Server
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
@@ -30,5 +33,11 @@ qt_add_resources(Server "assets"
     FILES
         assets/fullchain.pem
         assets/privkey.pem
+)
 
+qt_add_resources(Server "resource"
+    PREFIX
+        "/"
+    FILES
+        files/css/laba_4.css files/html/home.html files/html/laba_4.html files/html/laba_4_2.html files/html/laba_5_si.html files/html/laba_5_su.html files/html/laba_5.html
 )

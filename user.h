@@ -1,18 +1,37 @@
 #ifndef USER_H
 #define USER_H
-#include "database.h"
 #include <QString>
 #include <QList>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QJsonValue>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonArray>
 
 class User
 {
 public:
+    User(const QSqlDatabase& db, const QString email);
     User(const QList<QPair<QString, QString>>& form);
-    bool create_in_db(const QSqlDatabase& db);
+    bool create(const QSqlDatabase& db);
     bool check_exist(const QSqlDatabase& db);
     bool password_check(const QSqlDatabase& db);
-    void get();
-    void print();
+    QJsonObject get();
+
+    QString get_name() const;
+
+    QString get_email() const;
+
+    QString get_surname() const;
+
+    QString get_password() const;
+
+    QString get_gender() const;
+
+    QString get_comp() const;
+
 private:
     QString name;
     QString surname;

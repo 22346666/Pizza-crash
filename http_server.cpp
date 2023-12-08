@@ -1,47 +1,68 @@
 #include "http_server.h"
+#include "cookie.h"
+#include "user.h"
 
 Http_server::Http_server(QObject *parent)
     : QObject{parent}
 {
     ip.setAddress("192.168.1.105");
+    http_server.afterRequest([](QHttpServerResponse &&responce) {
+        responce.setHeader("Server", "Pizza cite server");
+        return std::move(responce);
+    });
+    router = http_server.router();
+    route_scripts();
+    route_css();
+    route_pages();
+}
 
+void Http_server::route_pages() {
     http_server.route("/", [this](const QHttpServerRequest &request) {
-        return get_page(request, "home.html");
+        return send_file(request, "home.html", html_path);
     });
 
     http_server.route("/laba_3", [this](const QHttpServerRequest &request) {
-        return get_page(request, "laba_3.html");
+        return send_file(request, "laba_3.html", html_path);
+    });
+
+    http_server.route("/laba_4_2", [this](const QHttpServerRequest &request) {
+        return send_file(request, "laba_4_2.html", html_path);
     });
 
     http_server.route("/laba_5", [this](const QHttpServerRequest &request) {
-        return get_page(request, "laba_5.html");
+        return send_file(request, "laba_5.html", html_path);
     });
 
     http_server.route("/laba_5/sign_in", [this](const QHttpServerRequest &request) {
-        return get_page(request, "laba_5_si.html");
+        return send_file(request, "laba_5_si.html", html_path);
     });
 
     http_server.route("/laba_5/sign_up", [this](const QHttpServerRequest &request) {
-        return get_page(request, "laba_5_su.html");
+        return send_file(request, "laba_5_su.html", html_path);
     });
 
     http_server.route("/laba_5/page", [this](const QHttpServerRequest &request) {
-        return get_page(request, "laba_5_page.html");
+        if(has_id_cookie(request)) {
+            return send_file(request, "laba_4.html", html_path);
+        }
+        return QHttpServerResponse(QHttpServerResponse::StatusCode::Unauthorized);
     });
 
-
-    http_server.route("/laba_5/post/user", [this](const QHttpServerRequest &request) {
+    http_server.route("/laba_5/post/user/sign_up", [this](const QHttpServerRequest &request) {
         qInfo() << request.body();
         QUrlQuery url(request.body());
         qInfo() << url.queryItems(QUrl::FullyDecoded);
         User user(url.queryItems(QUrl::FullyDecoded));
-        if(user.create_in_db(db.db)) {
-            return redirect(request, "/laba_5/page");
+        if(user.create(db.db)) {
+            Cookie cookie("email", user.get_email().toLatin1(), http_domain_name.toLatin1());
+            QHttpServerResponse response(QHttpServerResponse::StatusCode::Ok);
+            response.addHeader("Set-Cookie", cookie.get_raw_cookie());
+            return cookie_redirect(request, "/laba_5/page", user.get_email().toLatin1());
         }
         return redirect(request, "/laba_5/sign_in");
     });
 
-    http_server.route("/laba_5/get/user", [this](const QHttpServerRequest &request) {
+    http_server.route("/laba_5/post/user/sign_in", [this](const QHttpServerRequest &request) {
         qInfo() << request.body();
         QUrlQuery url(request.body());
         qInfo() << url.queryItems(QUrl::FullyDecoded);
@@ -50,16 +71,32 @@ Http_server::Http_server(QObject *parent)
             return redirect(request, "/laba_5/sign_up");
         }
         if(user.password_check(db.db)) {
-            return redirect(request, "/laba_5/page");
+
+            return cookie_redirect(request, "/laba_5/page", user.get_email().toLatin1());
         }
         return redirect(request, "/laba_5/sign_in");
     });
 
-
-    http_server.afterRequest([](QHttpServerResponse &&responce) {
-        responce.setHeader("Server", "Pizza cite server");
-        return std::move(responce);
+    http_server.route("/laba_5/get/user", [this](const QHttpServerRequest &request) {
+        User user(db.db, "s@gmail.com");
+        return send_json(request, user.get());
     });
+
+
+}
+
+void Http_server::route_scripts() {
+
+}
+
+void Http_server::route_css() {
+    QString endpoint = "/styles/";
+    QByteArray type = "text/css";
+
+    http_server.route(endpoint+"laba_4", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "laba_4.css", css_path, type);
+    });
+
 }
 
 Http_server::~Http_server()
@@ -108,16 +145,34 @@ QString Http_server::host(const QHttpServerRequest &request)
     return QString::fromLatin1(request.value("Host"));
 }
 
-QHttpServerResponse Http_server::get_page(const QHttpServerRequest &request, const QString &page_name)
+QHttpServerResponse Http_server::send_file(const QHttpServerRequest &request, const QString &page_name, const QString &files_folder_path, const QByteArray type)
 {
     QHttpServerResponse response(read_file(files_folder_path+page_name), QHttpServerResponse::StatusCode::Ok);
+    response.setHeader("Content-Type", type);
+    return std::move(response);
+}
+
+QHttpServerResponse Http_server::send_json(const QHttpServerRequest &request, const QJsonObject &json)
+{
+    QHttpServerResponse response(json);
+    response.setHeader("Content-Type", "application/json");
     return std::move(response);
 }
 
 QHttpServerResponse Http_server::redirect(const QHttpServerRequest &request, const QString &endpoint)
 {
     QHttpServerResponse response(QHttpServerResponse::StatusCode::Found);
-    response.addHeader("Location", (domain_name+endpoint).toLatin1());
+    response.addHeader("Location", (http_domain_name+endpoint).toLatin1());
+    return std::move(response);
+}
+
+QHttpServerResponse Http_server::cookie_redirect(const QHttpServerRequest &request, const QString &endpoint, QByteArray email_value)
+{
+    Cookie cookie("email", email_value, domain_name.toLatin1());
+    QHttpServerResponse response(QHttpServerResponse::StatusCode::Found);
+    qInfo() << "Raw cookie" << cookie.get_raw_cookie();
+    response.addHeader("Set-Cookie", cookie.get_raw_cookie());
+    response.addHeader("Location", (http_domain_name+endpoint).toLatin1());
     return std::move(response);
 }
 
@@ -142,3 +197,19 @@ QByteArray Http_server::read_file(const QString &path) const
     }
     return html;
 }
+
+bool Http_server::has_id_cookie(const QHttpServerRequest &request)
+{
+    QString request_cookie = request.value("Cookie");
+    QStringList cookies = request_cookie.split("; ");
+    for(auto& i : cookies) {
+        if(i.startsWith("email", Qt::CaseInsensitive)) {
+            qInfo() << "There is website cookie in the request";
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
