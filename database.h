@@ -6,9 +6,8 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
-
 #include <QVariant>
-
+#include <QSqlRecord>
 
 
 class Database : public QObject
@@ -16,10 +15,9 @@ class Database : public QObject
     Q_OBJECT
 public:
     explicit Database(QObject *parent = nullptr);
-    void connect_db();
-
-private:
-
+    void test_query();
+    ~Database();
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
 signals:
 
 };

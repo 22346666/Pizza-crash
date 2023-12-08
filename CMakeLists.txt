@@ -10,6 +10,7 @@ qt_add_executable(Server
     http_server.h
     http_server.cpp
     database.h database.cpp
+    user.h user.cpp
 )
 
 target_link_libraries(Server PRIVATE
@@ -27,7 +28,7 @@ qt_add_resources(Server "assets"
     PREFIX
         "/"
     FILES
-        assets/server_certificate.crt
-        assets/server.key
+        assets/fullchain.pem
+        assets/privkey.pem
 
 )
