@@ -1,0 +1,100 @@
+<html>
+
+<style>
+	body{
+		background-image: url("BackgrShapeC.png");
+		background-repeat: no-repeat;
+		background-position: bottom center;
+	}
+	.ScrLeftMiddle{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 50%;
+		left: 2%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: center;
+	}
+	.ScrRightMiddle{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 50%;
+		left: 98%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: center;
+	}
+	.ScrPizzaSelector{
+		display:block;
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 50%;
+		left: 60%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: center;
+	}
+</style>
+
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" href="..\css\StylesPizza.css">
+</head>
+
+<body>
+	<div class="ScrRightCenter">
+		<h2 id="RightName" align="center" class="YellTextSecondary">Pizza name</h2>
+		<p id="RightPrice" align="center" class="YellTextSecondary">Pizza price</p>
+		<p><img id="RightPic" class="RoundImage" src="DefaultPizza.png"></p>
+	</div>
+	<div class="ScrCenter">
+		<h1 id="RightName" align="center" class="YellTextMain">Pizza name</h1>
+		<p id="RightPrice" align="center" class="YellTextMain">Pizza price</p>
+		<p><img id="CenterPic" class="RoundImage" src="DefaultPizza.png"></p>
+	</div>
+	<div class="ScrLeftCenter">
+		<h2 id="RightName" align="center" class="YellTextSecondary">Pizza name</h2>
+		<p id="RightPrice" align="center" class="YellTextSecondary">Pizza price</p>
+		<p><img id="LeftPic" class="RoundImage" src="DefaultPizza.png"></p>
+	</div>
+	
+	<div class="ScrPizzaSelector">
+		<p><input type="button" class="RoundButton" style="background-color:#e68a46;color:#000000;font-size:24" id="IncPizzas" value="+"></p>
+		<p class="YellTextSecondary" id="PizzaCounter">count</p>
+		<p><input type="button" class="RoundButton" style="background-color:#e68a46;color:#000000;font-size:24" id="DecPizzas" value="-"></p>
+	</div>
+
+	<div class="ScrTopRight">
+		<a href="Order.html"><img src="Cart.png" alt="ShoppingCart" class="RoundImage" style="box-shadow: 0px 0px 10px grey;"></a>
+		<div id="TotalCounter" style="display:inline" class="YellTextSecondary">x0</div>		
+	</div>
+
+	<div class="ScrLeftMiddle">
+		<input type="button" id="LButton" class="LeftButton" value="<">
+	</div>
+	<div class="ScrRightMiddle">
+		<input type="button" id="RButton" class="RightButton" value=">">
+	</div>
+
+	<div class="ScrBottom">
+		<input type="button" id="SizeSmall" class="RoundButton" value="S">
+		<input type="button" id="SizeMedium" class="RoundButton" value="M">
+		<input type="button" id="SizeLarge" class="RoundButton" value="L">
+	</div>
+
+	<div class="BottomLeftIcons">
+		<p><a href="#"><img src="Phone.png" alt="Phone" class="RoundImage"></a></p>
+		<p><a href="#"><img src="Facebook.png" alt="Facebook" class="RoundImage"></a></p>
+		<p><a href="#"><img src="Instagram.png" alt="Instagram" class="RoundImage"></a></p>
+	</div>
+	<div class="ScrTopLeft">
+		<h2 class="YellTextMain">PIZZA CRASH</h2>
+	</div>
+</body>
+</html>
