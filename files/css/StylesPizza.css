@@ -1,0 +1,168 @@
+	body{
+		background-color: #2a221f;
+	}
+	.ScrCenter{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: center;
+	}
+	.ScrBottom{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 90%;
+		left: 50%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: center;
+	}
+	.ScrLeftCenter{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 50%;
+		left: 20%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: center;
+	}
+	.ScrRightCenter{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 50%;
+		left: 80%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: left;
+	}
+	.ScrTopRight{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 10%;
+		left: 90%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: left;
+	}
+	.YellTextMain{
+		font-family: "Arima Madurai";
+		color: #fa964b;
+	}
+	.YellTextSecondary{
+		font-family: "Arima Madurai";
+		color: #c1a49a;
+	}
+	.RoundImage{
+		border-radius: 50%;
+	}
+	.BottomLeftIcons{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 85%;
+		left: 5%;
+		-ms-transform: translateX(-50%) translateY(-50%);
+		-webkit-transform: translate(-50%,-50%);
+		transform: translate(-50%,-50%);
+		text-align: center;
+	}
+	input[type=text]{
+		padding-left: 5px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		
+		background-color:transparent;
+		border: 1px solid #555;
+		border-radius: 25px;
+	}
+	input[type=password]{
+		padding-left: 5px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		
+		background-color:transparent;
+		border: 1px solid #555;
+		border-radius: 25px;
+	}
+	.LogRegButton{
+		padding-left: 25px;
+		padding-right: 25px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		
+		border-radius: 25px;
+		background-color: #ff5959;
+		border: 1px solid #555;
+		
+		color: #f1f6e9;
+	}
+	.LeftButton{
+		padding-top: 33px;
+		padding-bottom: 33px;
+		padding-left: 15px;
+		padding-right: 15px;
+
+		border-radius: 0px 32px 32px 0px;
+		background-color:#2a221f;
+		border: 0px solid;
+		box-shadow: 0px 0px 10px grey;
+		font-family: "Arima Madurai";
+		font-size: 24;
+		color:	#c1a49a;
+	}
+	.LeftButton:hover{
+		background-color:#ff5959;
+		color:	#000000;
+	}
+	.RightButton{
+		padding-top: 33px;
+		padding-bottom: 33px;
+		padding-left: 15px;
+		padding-right: 15px;
+
+		border-radius: 32px 0px 0px 32px;
+		background-color:#2a221f;
+		border: 0px solid;
+		box-shadow: 0px 0px 10px grey;
+		font-family: "Arima Madurai";
+		font-size: 24;
+		color:	#c1a49a;
+	}
+	.RightButton:hover{
+		background-color:#ff5959;
+		color:	#000000;
+	}
+	.RoundButton{
+		width:50px;
+		height:50px;
+		border-radius: 50%;
+		background-color: transparent;
+
+		font-family: "Arima Madurai";
+		color:	#c1a49a;
+	}
+	
+	a:link { 
+		text-decoration: none; 
+	} 
+	a:visited { 
+		text-decoration: none; 
+	} 
+	a:hover { 
+		text-decoration: none; 
+	} 
+	a:active { 
+		text-decoration: none; 
+	}
