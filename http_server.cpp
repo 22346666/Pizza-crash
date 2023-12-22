@@ -14,6 +14,7 @@ Http_server::Http_server(QObject *parent)
     route_scripts();
     route_css();
     route_pages();
+    route_photos();
 }
 
 void Http_server::route_pages() {
@@ -87,6 +88,52 @@ void Http_server::route_pages() {
 
 void Http_server::route_scripts() {
 
+}
+
+void Http_server::route_photos()
+{
+    QString endpoint = "/photos/";
+    QByteArray type = "image/png";
+
+    http_server.route(endpoint+"cart", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "Cart.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"backgr_shape", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "BackgrShape.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"backgr_shape_c", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "BackgrShapeC.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"backgr_shape_r", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "BackgrShapeR.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"fish", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "fish.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"default_pizza", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "DefaultPizza.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"facebook", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "Facebook.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"instagram", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "Instagram.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"phone", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "Phone.png", photos_path, type);
+    });
+
+    http_server.route(endpoint+"pizza_background", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "PizzaBackgr.png", photos_path, type);
+    });
 }
 
 void Http_server::route_css() {

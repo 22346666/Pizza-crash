@@ -50,11 +50,13 @@ private:
     QString html_path = ":/files/html/";
     QString scripts_path = ":/files/js/";
     QString css_path = ":/files/css/";
+    QString photos_path = ":/files/photos/";
     QHttpServerRouter* router;
 
     void route_pages();
     void route_css();
     void route_scripts();
+    void route_photos();
 signals:
 
 };
