@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 function getCookie(name) {
     var dc = document.cookie;
     var prefix = name + "=";
@@ -38,7 +40,6 @@ function CheckEmail()
 
 function LogOut()
 {
-	var CEm = document.cookie.split("; ").find((row) => row.startsWith("email="))?.split("=")[1];
-  document.cookie = CEm + "=; expires="+ new Date(0).toUTCString();
+  Cookies.remove('email', { path: '/', domain: 'pizzacrash.servebeer.com' })
   location.reload();
 }
