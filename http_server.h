@@ -49,7 +49,7 @@ private:
     const quint16 port = 80;
     const quint16 ssl_port = 443;
     QString html_path = ":/files/html/";
-    QString scripts_path = ":/files/js/";
+    QString scripts_path = ":/files/scripts/";
     QString css_path = ":/files/css/";
     QString photos_path = ":/files/photos/";
     QHttpServerRouter* router;

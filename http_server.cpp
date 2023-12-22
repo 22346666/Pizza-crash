@@ -31,7 +31,7 @@ void Http_server::route_pages() {
     });
 
     http_server.route("/main_menu", [this](const QHttpServerRequest &request) {
-        return send_file(request, "", html_path);
+        return send_file(request, "MainMenu.html", html_path);
     });
 
     http_server.route("/sign_in", [this](const QHttpServerRequest &request) {
@@ -82,7 +82,12 @@ void Http_server::route_pages() {
 }
 
 void Http_server::route_scripts() {
+    QString endpoint = "/scripts/";
+    QByteArray type = "text/javascript";
 
+    http_server.route(endpoint+"main_menu", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "MainMenu.js", scripts_path, type);
+    });
 }
 
 void Http_server::route_photos()
