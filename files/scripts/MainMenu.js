@@ -38,6 +38,6 @@ function CheckEmail()
 
 function LogOut()
 {
-  document.cookie="email=; Max-Age=0; path=/; domain="++ location.hostname;
+  document.cookie="email=; Max-Age=0; path=/; domain="+location.hostname;
   location.reload();
 }
