@@ -4,12 +4,14 @@ User::User(const QSqlDatabase& db, const QString email)
 {
     QSqlQuery query(db);
     query.exec(QString("SELECT * FROM users WHERE UserEmail = '%1'").arg(email));
-    query.next();
+    if(!query.next()){
+        return;
+    }
     name=query.value(1).toString();
     surname=query.value(2).toString();
     this->email=query.value(3).toString();
     password=query.value(4).toString();
-    qInfo() << name << surname << email << password;
+    qInfo() << name << surname << this->email << password;
 }
 
 User::User(const QList<QPair<QString, QString>> &form)
@@ -69,7 +71,7 @@ bool User::password_check(const QSqlDatabase &db)
     return false;
 }
 
-QJsonObject User::get()
+QJsonObject User::get_json()
 {
     QJsonObject user;
     user.insert("Name", QJsonValue(name));
@@ -77,6 +79,11 @@ QJsonObject User::get()
     user.insert("Email", QJsonValue(email));
     user.insert("Password", QJsonValue(password));
     return user;
+}
+
+void User::update(const QSqlDatabase &db, const QJsonObject &json)
+{
+
 }
 
 QString User::get_name() const

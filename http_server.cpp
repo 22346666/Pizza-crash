@@ -78,6 +78,12 @@ void Http_server::route_pages() {
         return redirect(request, "/sign_in");
     });
 
+    http_server.route("/get/user/<arg>", [this](const QString email, const QHttpServerRequest &request) {
+        qDebug() << email;
+        User user(db.db, email);
+        return send_json(request, user.get_json());
+    });
+
 
 }
 

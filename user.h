@@ -18,7 +18,8 @@ public:
     bool create(const QSqlDatabase& db);
     bool check_exist(const QSqlDatabase& db);
     bool password_check(const QSqlDatabase& db);
-    QJsonObject get();
+    QJsonObject get_json();
+    void update(const QSqlDatabase& db, const QJsonObject& json);
 
     QString get_name() const;
 
