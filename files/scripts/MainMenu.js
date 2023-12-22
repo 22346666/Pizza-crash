@@ -38,6 +38,7 @@ function CheckEmail()
 
 function LogOut()
 {
-  document.cookie="email=; Max-Age=0; path=/; domain="+location.hostname;
+	var CEm = document.cookie.split("; ").find((row) => row.startsWith("email="))?.split("=")[1];
+  document.cookie = CEm + "=; expires="+ new Date(0).toUTCString();
   location.reload();
 }
