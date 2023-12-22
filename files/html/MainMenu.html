@@ -14,12 +14,16 @@
 	<link rel="stylesheet" href="https://pizzacrash.servebeer.com/styles/pizza">
 </head>
 
-<body>
+<body onload="CheckEmail()">
+	<script src="https://pizzacrash.servebeer.com/scripts/MainMenu"></script>
+
 	<div class="ScrCenter">
 		<h1><a href="Categories.html" class="YellTextSecondary">Categories</a></h1>
 		<h1><a href="Home.html" class="YellTextMain">Home</a></h1>
+		<h1><a href="Profile.html" class="YellTextMain">Profile</a></h1>
 		<h1><a href="About.html" class="YellTextMain">About</a></h1>
-		<h1><a href="Login.html" class="YellTextMain">Log in</a></h1>
+		<h1><a href="Login.html" class="YellTextMain" onclick="LogOut()">Log out</a></h1>
+		
 	</div>
 	<div class="ScrBottom">
 		<a href="#"><img src="https://pizzacrash.servebeer.com/photos/phone" alt="Phone" class="RoundImage"></a>
