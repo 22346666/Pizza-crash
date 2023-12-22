@@ -9,6 +9,7 @@
 #  include <QSslKey>
 #endif
 
+#include <memory>
 #include <QObject>
 #include <QFile>
 #include <QDir>
@@ -57,6 +58,23 @@ private:
     void route_css();
     void route_scripts();
     void route_photos();
+    void declare_views();
+
+    template<typename View_handler>
+    void route_view(const QByteArray path, View_handler &&view_handler)
+    {
+        auto rule = std::make_unique<QHttpServerRouterRule>(
+            path,[this, view_handler = std::forward<View_handler>(view_handler)]
+            (QRegularExpressionMatch &match,
+             const QHttpServerRequest &request,
+             QHttpServerResponder &&responder) mutable {
+                auto bound_view_handler = router->bindCaptured<View_handler>(
+                    std::move(view_handler), match);
+                bound_view_handler();
+            });
+        router->addRule<View_handler>(std::move(rule));
+    }
+
 signals:
 
 };
