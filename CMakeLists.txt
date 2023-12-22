@@ -39,5 +39,6 @@ qt_add_resources(Server "resource"
     PREFIX
         "/"
     FILES
-        files/css/laba_4.css files/html/home.html files/html/laba_4.html files/html/laba_4_2.html files/html/laba_5_si.html files/html/laba_5_su.html files/html/laba_5.html
+    files/html/401.html files/html/About.html files/html/Home.html files/html/laba_4.html files/html/laba_4_2.html files/html/laba_5.html files/html/laba_5_si.html files/html/laba_5_su.html files/html/Login.html files/html/MainMenu.html files/html/Order.html files/html/Register.html
+    files/css/StylesPizza.css files/html/401.html files/html/About.html files/html/Home.html files/html/laba_4.html files/html/laba_4_2.html files/html/laba_5.html files/html/laba_5_si.html files/html/laba_5_su.html files/html/Login.html files/html/MainMenu.html files/html/Order.html files/html/Register.html files/photos/BackgrShape.png files/photos/BackgrShapeC.png files/photos/BackgrShapeR.png files/photos/Cart.png files/photos/DefaultPizza.png files/photos/Facebook.png files/photos/fish.png files/photos/Instagram.png files/photos/Phone.png files/photos/PizzaBackgr.png
 )

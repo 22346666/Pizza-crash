@@ -18,37 +18,37 @@ Http_server::Http_server(QObject *parent)
 
 void Http_server::route_pages() {
     http_server.route("/", [this](const QHttpServerRequest &request) {
-        return send_file(request, "home.html", html_path);
+        return send_file(request, "Home.html", html_path);
     });
 
-    http_server.route("/laba_3", [this](const QHttpServerRequest &request) {
-        return send_file(request, "laba_3.html", html_path);
+    http_server.route("/about", [this](const QHttpServerRequest &request) {
+        return send_file(request, "About.html", html_path);
     });
 
-    http_server.route("/laba_4_2", [this](const QHttpServerRequest &request) {
-        return send_file(request, "laba_4_2.html", html_path);
+    http_server.route("/order", [this](const QHttpServerRequest &request) {
+        return send_file(request, "Order.html", html_path);
     });
 
-    http_server.route("/laba_5", [this](const QHttpServerRequest &request) {
-        return send_file(request, "laba_5.html", html_path);
+    http_server.route("/main_menu", [this](const QHttpServerRequest &request) {
+        return send_file(request, "", html_path);
     });
 
-    http_server.route("/laba_5/sign_in", [this](const QHttpServerRequest &request) {
-        return send_file(request, "laba_5_si.html", html_path);
+    http_server.route("/sign_in", [this](const QHttpServerRequest &request) {
+        return send_file(request, "Login.html", html_path);
     });
 
-    http_server.route("/laba_5/sign_up", [this](const QHttpServerRequest &request) {
-        return send_file(request, "laba_5_su.html", html_path);
+    http_server.route("/sign_up", [this](const QHttpServerRequest &request) {
+        return send_file(request, "Register.html", html_path);
     });
 
-    http_server.route("/laba_5/page", [this](const QHttpServerRequest &request) {
+    http_server.route("/pizza", [this](const QHttpServerRequest &request) {
         if(has_id_cookie(request)) {
-            return send_file(request, "laba_4.html", html_path);
+            return send_file(request, "Home.html", html_path);
         }
-        return QHttpServerResponse(QHttpServerResponse::StatusCode::Unauthorized);
+        return QHttpServerResponse(read_file(html_path+"401.html"), QHttpServerResponse::StatusCode::Unauthorized);
     });
 
-    http_server.route("/laba_5/post/user/sign_up", [this](const QHttpServerRequest &request) {
+    http_server.route("/post/user/sign_up", [this](const QHttpServerRequest &request) {
         qInfo() << request.body();
         QUrlQuery url(request.body());
         qInfo() << url.queryItems(QUrl::FullyDecoded);
@@ -62,22 +62,22 @@ void Http_server::route_pages() {
         return redirect(request, "/laba_5/sign_in");
     });
 
-    http_server.route("/laba_5/post/user/sign_in", [this](const QHttpServerRequest &request) {
+    http_server.route("/post/user/sign_in", [this](const QHttpServerRequest &request) {
         qInfo() << request.body();
         QUrlQuery url(request.body());
         qInfo() << url.queryItems(QUrl::FullyDecoded);
         User user(url.queryItems(QUrl::FullyDecoded));
         if(!user.check_exist(db.db)) {
-            return redirect(request, "/laba_5/sign_up");
+            return redirect(request, "/sign_up");
         }
         if(user.password_check(db.db)) {
 
-            return cookie_redirect(request, "/laba_5/page", user.get_email().toLatin1());
+            return cookie_redirect(request, "/pizza", user.get_email().toLatin1());
         }
-        return redirect(request, "/laba_5/sign_in");
+        return redirect(request, "/sign_in");
     });
 
-    http_server.route("/laba_5/get/user", [this](const QHttpServerRequest &request) {
+    http_server.route("/get/user", [this](const QHttpServerRequest &request) {
         User user(db.db, "s@gmail.com");
         return send_json(request, user.get());
     });
@@ -93,8 +93,8 @@ void Http_server::route_css() {
     QString endpoint = "/styles/";
     QByteArray type = "text/css";
 
-    http_server.route(endpoint+"laba_4", [this, type](const QHttpServerRequest &request) {
-        return send_file(request, "laba_4.css", css_path, type);
+    http_server.route(endpoint+"pizza", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "StylesPizza.css", css_path, type);
     });
 
 }
