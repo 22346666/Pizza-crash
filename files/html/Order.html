@@ -1,0 +1,54 @@
+<html>
+
+<style>
+	.ScrMiddleTop{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 10%;
+		left: 50%;
+		-ms-transform: translateX(-50%) translateY(0%);
+		-webkit-transform: translate(-50%,0%);
+		transform: translate(-50%,0%);
+		text-align: center;
+	}
+	.ScrMiddleBottom{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 75%;
+		left: 50%;
+		-ms-transform: translateX(-50%) translateY(0%);
+		-webkit-transform: translate(-50%,0%);
+		transform: translate(-50%,0%);
+		text-align: center;
+	}
+</style>
+
+<head>
+	<title>Your order</title>
+	<link rel="stylesheet" href="..\css\StylesPizza.css">
+</head>
+
+<body>
+	<div class="ScrMiddleTop">
+		<h1 class="YellTextMain">Your order</h1>
+		<div id="OrderList">*Order list*</div>
+	</div>
+	
+	<div class="ScrMiddleBottom">
+		<p><input type="text" id="DeliveryAddress" placeholder="Delivery address"></p>
+		<h2 class="YellTextSecondary" id="TotalPrice">TOTAL: ₴</h2>
+		<p><input type="Button" class="LogRegButton" value="Order" id="OrderButton"></p>
+	</div>
+
+	<div class="BottomLeftIcons">
+		<p><a href="#"><img src="Phone.png" alt="Phone" class="RoundImage"></a></p>
+		<p><a href="#"><img src="Facebook.png" alt="Facebook" class="RoundImage"></a></p>
+		<p><a href="#"><img src="Instagram.png" alt="Instagram" class="RoundImage"></a></p>
+	</div>
+	<div class="ScrTopLeft">
+		<h2 class="YellTextMain">PIZZA CRASH</h2>
+	</div>
+</body>
+</html>
