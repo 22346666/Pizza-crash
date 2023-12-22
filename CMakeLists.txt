@@ -12,6 +12,7 @@ qt_add_executable(Server
     database.h database.cpp
     user.h user.cpp
     cookie.h cookie.cpp
+    files/photos/BackgrShape.png files/photos/BackgrShapeC.png files/photos/BackgrShapeR.png files/photos/Cart.png files/photos/DefaultPizza.png files/photos/Facebook.png files/photos/fish.png files/photos/Instagram.png files/photos/Phone.png files/photos/PizzaBackgr.png
 
 )
 
