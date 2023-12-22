@@ -24,12 +24,21 @@ function CheckEmail()
 	let CookEmail=getCookie("email");
 	if(CookEmail==null)
 	{
-		window.location.replace("401.html");
+		document.getElementById("MenuModifiable").innerHTML=
+			'<h1><a href="Login.html" class="YellTextMain">Log in</a></h1>\
+			<h1><a href="Register.html" class="YellTextMain">Register</a></h1>';
+	}
+	else
+	{
+		document.getElementById("MenuModifiable").innerHTML=
+			'<h1><a href="#" class="YellTextMain">Profile</a></h1>\
+			<h1><a href="https://pizzacrash.servebeer.com/sign_in" class="YellTextMain" onclick="LogOut()">Log out</a></h1>';
 	}
 }
 
 function LogOut()
 {
-  document.cookie="email=;Max-Age=0:";
+	var CEm = document.cookie.split("; ").find((row) => row.startsWith("email="))?.split("=")[1];
+  document.cookie = CEm + "=; expires="+ new Date(0).toUTCString();
   location.reload();
 }
