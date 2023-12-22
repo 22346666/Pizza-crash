@@ -1,4 +1,4 @@
-import Cookies from 'js-cookie'
+//import Cookies from 'js-cookie'
 
 function getCookie(name) {
     var dc = document.cookie;
