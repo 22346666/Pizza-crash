@@ -1,4 +1,4 @@
-function getCookie(name) {
+ыfunction getCookie(name) {
     var dc = document.cookie;
     var prefix = name + "=";
     var begin = dc.indexOf("; " + prefix);
