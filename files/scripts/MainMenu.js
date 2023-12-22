@@ -40,6 +40,6 @@ function CheckEmail()
 
 function LogOut()
 {
-  Cookies.remove('email', { path: '/', domain: 'pizzacrash.servebeer.com' })
+  Cookies.remove('email', { path: '/', domain: '.pizzacrash.servebeer.com' })
   location.reload();
 }
