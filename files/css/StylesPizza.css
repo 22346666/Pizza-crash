@@ -86,6 +86,7 @@
 		background-color:transparent;
 		border: 1px solid #555;
 		border-radius: 25px;
+		color: #c1a49a;
 	}
 	input[type=password]{
 		padding-left: 5px;
@@ -95,6 +96,7 @@
 		background-color:transparent;
 		border: 1px solid #555;
 		border-radius: 25px;
+		color: #c1a49a;
 	}
 	.LogRegButton{
 		padding-left: 25px;
