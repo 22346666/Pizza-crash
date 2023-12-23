@@ -125,6 +125,10 @@ void Http_server::route_scripts() {
     http_server.route(endpoint+"home", [this, type](const QHttpServerRequest &request) {
         return send_file(request, "Home.js", scripts_path, type);
     });
+
+    http_server.route(endpoint+"order", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "Order.js", scripts_path, type);
+    });
 }
 
 void Http_server::route_photos()
