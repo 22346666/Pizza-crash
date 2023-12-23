@@ -87,6 +87,17 @@ void User::update(const QSqlDatabase &db, const QJsonObject &json)
     query.exec(QString("UPDATE users SET UserPassword = '%1' WHERE UserEmail = '%2';").arg(json.value("Password").toString(), json.value("Email").toString()));
 }
 
+void User::create_order(const QSqlDatabase &db, const QJsonObject &json)
+{
+    QSqlQuery query(db);
+    query.exec(QString("SELECT UserID FROM users WHERE UserEmail = '%1'").arg(json.value("Email").toString()));
+    query.next();
+    QString id = query.value(0).toString();
+    qDebug() << id;
+    query.exec(QString("INSERT INTO orders (OrderDate, OrderAddress, OrderSumm, UserID) values ('%1', '%2', '%3', '%4')").arg(json.value("Date").toString(), json.value("Address").toString(), json.value("Summ").toString(), id));
+    qDebug() << query.lastError().text();
+}
+
 QString User::decode_plus(QString value)
 {
     for(size_t i {0}; i < value.size(); ++i){

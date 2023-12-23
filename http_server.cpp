@@ -105,6 +105,13 @@ void Http_server::route_pages() {
         qDebug() << "Someone asked for pizza list";
         return send_json(request, Pizza::get_json(db.db));
     });
+
+    http_server.route("/post/order", [this](const QHttpServerRequest &request) {
+        QJsonDocument data = QJsonDocument::fromJson(request.body());
+        qDebug() << data.object();
+        User::create_order(db.db, data.object());
+        return "Ok";
+    });
 }
 
 void Http_server::route_scripts() {
