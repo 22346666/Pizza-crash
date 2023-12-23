@@ -69,4 +69,7 @@ function SendOrder()
   $.post("https://pizzacrash.servebeer.com/post/order",
       JSON.stringify(OrderObj)
   )
+
+  localStorage.removeItem("PickedPizzas");
+  document.getElementById("DeliveryAddress").value="";
 }
