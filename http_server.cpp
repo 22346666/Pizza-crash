@@ -85,10 +85,9 @@ void Http_server::route_pages() {
     });
 
     http_server.route("/patch/user", [this](const QHttpServerRequest &request) {
-        //QJsonObject data;
-        qDebug() << "Patching";
-        qDebug() << request.body();
-        //User::update(db.db, data);
+        QJsonDocument data = QJsonDocument::fromJson(request.body());
+        qDebug() << data.object();
+        User::update(db.db, data.object());
         return "Ok";
     });
 
@@ -147,15 +146,6 @@ void Http_server::route_photos()
     http_server.route(endpoint+"pizza_background", [this, type](const QHttpServerRequest &request) {
         return send_file(request, "PizzaBackgr.png", photos_path, type);
     });
-}
-
-void Http_server::declare_views()
-{
-    auto user_page_view = [] (const QString email) {
-        qDebug() << "email" << email;
-    };
-    using user_view_handler = decltype(user_page_view);
-
 }
 
 void Http_server::route_css() {
