@@ -52,12 +52,19 @@ function GetOrder()
 
 function SendOrder()
 {
+  var currentdate     = new Date(); 
   var OrderObj=new Object();
-  OrderObj["Email"]=;
-  OrderObj["Address"]=;
-  OrderObj["Summ"]=;
-  OrderObj["Date"]=;
+  OrderObj["Email"]=Cookies.get("email");
+  OrderObj["Address"]=document.getElementById("DeliveryAddress").value;
+  OrderObj["Summ"]=TotalPrice;
+  OrderObj["Date"]=currentdate.getFullYear() + "-" +
+                       ('0' + (currentdate.getMonth()+1)).slice(-2)  + "-"+
+                       ('0' + currentdate.getDate()).slice(-2) + " "  + 
+                       ('0' + currentdate.getHours()).slice(-2) + ":"   +
+                       ('0' + currentdate.getMinutes()).slice(-2) + ":" + 
+                       ('0' + currentdate.getSeconds()).slice(-2);
+
   $.post("https://pizzacrash.servebeer.com/post/order",
-    
+      JSON.stringify(OrderObj)
   )
 }
