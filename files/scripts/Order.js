@@ -56,20 +56,36 @@ function SendOrder()
 {
   var currentdate     = new Date(); 
   var OrderObj=new Object();
-  OrderObj["Email"]=Cookies.get("email");
-  OrderObj["Address"]=document.getElementById("DeliveryAddress").value;
-  OrderObj["Summ"]=TotalPrice.toString();
-  OrderObj["Date"]=currentdate.getFullYear() + "-" +
-                       ('0' + (currentdate.getMonth()+1)).slice(-2)  + "-"+
-                       ('0' + currentdate.getDate()).slice(-2) + " "  + 
-                       ('0' + currentdate.getHours()).slice(-2) + ":"   +
-                       ('0' + currentdate.getMinutes()).slice(-2) + ":" + 
-                       ('0' + currentdate.getSeconds()).slice(-2);
-
-  $.post("https://pizzacrash.servebeer.com/post/order",
-      JSON.stringify(OrderObj)
-  )
-
-  localStorage.removeItem("PickedPizzas");
-  document.getElementById("DeliveryAddress").value="";
+  if(TotalPrice!==0)
+  {
+    if(document.getElementById("DeliveryAddress").value!=="")
+    {
+      OrderObj["Email"]=Cookies.get("email");
+      OrderObj["Address"]=document.getElementById("DeliveryAddress").value;
+      OrderObj["Summ"]=TotalPrice.toString();
+      OrderObj["Date"]=currentdate.getFullYear() + "-" +
+                           ('0' + (currentdate.getMonth()+1)).slice(-2)  + "-"+
+                           ('0' + currentdate.getDate()).slice(-2) + " "  + 
+                           ('0' + currentdate.getHours()).slice(-2) + ":"   +
+                           ('0' + currentdate.getMinutes()).slice(-2) + ":" + 
+                           ('0' + currentdate.getSeconds()).slice(-2);
+    
+      $.post("https://pizzacrash.servebeer.com/post/order",
+          JSON.stringify(OrderObj)
+      )
+    
+      localStorage.removeItem("PickedPizzas");
+      document.getElementById("DeliveryAddress").value="";
+      document.getElementById("OrderList").innerHTML="";
+      window.location.reload();
+    }
+    else
+    {
+      window.alert("Please, input the delivery address!");
+    }
+  }
+  else
+  {
+    window.alert("Please, select some pizzas!");
+  }
 }
