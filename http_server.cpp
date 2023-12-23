@@ -102,6 +102,7 @@ void Http_server::route_pages() {
     });
 
     http_server.route("/get/pizza", [this](const QHttpServerRequest &request) {
+        qDebug() << "Someone asked for pizza list";
         return send_json(request, Pizza::get_json(db.db));
     });
 }
@@ -112,6 +113,10 @@ void Http_server::route_scripts() {
 
     http_server.route(endpoint+"main_menu", [this, type](const QHttpServerRequest &request) {
         return send_file(request, "MainMenu.js", scripts_path, type);
+    });
+
+    http_server.route(endpoint+"home", [this, type](const QHttpServerRequest &request) {
+        return send_file(request, "Home.js", scripts_path, type);
     });
 }
 
