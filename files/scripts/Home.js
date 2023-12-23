@@ -2,8 +2,7 @@ var CenterPizza=0;
 var LeftPizza=0;
 var RightPizza=0;
 var MaxPizzas=0;
-
-getPizzaList()
+var PizzaArray;
 
 function getPizzaList()
 {
@@ -18,6 +17,7 @@ function getPizzaList()
 
         request.done(function(data) {
             console.log("Data:", data);
+            PizzaArray=data;
             // Здесь вы можете обработать полученные данные
         });
 
