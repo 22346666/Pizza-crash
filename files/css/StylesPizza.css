@@ -120,6 +120,10 @@
 		
 		color: #f1f6e9;
 	}
+	.LogRegButton:hover{
+		background-color:#ff5959;
+		color:	#000000;
+	}
 	.LeftButton{
 		padding-top: 33px;
 		padding-bottom: 33px;
