@@ -23,23 +23,25 @@ function getCookie(name) {
 */
 function CheckEmail()
 {
-	let CookEmail=Cookies.get("email");
-	if(CookEmail=='')
-	{
-		document.getElementById("MenuModifiable").innerHTML=
-			'<h1><a href="Login.html" class="YellTextMain">Log in</a></h1>\
-			<h1><a href="Register.html" class="YellTextMain">Register</a></h1>';
-	}
-	else
-	{
-		document.getElementById("MenuModifiable").innerHTML=
-			'<h1><a href="Profile.html" class="YellTextMain">Profile</a></h1>\
-			<h1><a href="https://pizzacrash.servebeer.com/sign_in" class="YellTextMain" onclick="LogOut()">Log out</a></h1>';
-	}
+    let CookEmail=Cookies.get("email");
+    if(CookEmail===undefined)
+    {
+        document.getElementById("MenuModifiable").innerHTML=
+                '<h1><a href="Login.html" class="YellTextMain">Log in</a></h1>\
+            <h1><a href="Register.html" class="YellTextMain">Register</a></h1>';
+    }
+    else
+    {
+        document.getElementById("MenuModifiable").innerHTML=
+                '<h1><a href="Profile.html" class="YellTextMain">Profile</a></h1>\
+            <h1><a href="https://pizzacrash.servebeer.com/sign_in" class="YellTextMain" onclick="LogOut()">Log out</a></h1>';
+
+
+    }
 }
 
 function LogOut()
 {
-  Cookies.remove('email', { path: '/', domain: '.pizzacrash.servebeer.com' })
-  location.reload();
+    Cookies.remove('email', { path: '', domain: 'pizzacrash.servebeer.com' })
+    location.reload();
 }
