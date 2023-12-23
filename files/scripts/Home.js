@@ -15,7 +15,7 @@ function getPizzaList()
 
 
         request.done(function(data) {
-            console.log("Data:", data);
+            //console.log("Data:", data);
             localStorage.setItem("PizzaArray",JSON.stringify(data));
             console.log(JSON.stringify(data));
             // Здесь вы можете обработать полученные данные
