@@ -35,7 +35,10 @@ function GetOrder()
             {
                 if(PickedPizzas[i]>0)
                 {
-                     document.getElementById("OrderList").innerHTML+="<p><img src="+PList.Pizzas[i]["Image link"]+">"+PList.Pizzas[i]["Name"]+"</p>"
+                     document.getElementById("OrderList").innerHTML+="<p><img src="+PList.Pizzas[i]["Image link"]+"style='max-width:100;'>"+
+                       PList.Pizzas[i]["Name"]+
+                       " x"+PickedPizzas[i]+": "+
+                       PList.Pizzas[i]["Cost"]*PickedPizzas[i]+"₴</p>"
                 }
             }
         });
