@@ -15,6 +15,7 @@ qt_add_executable(Server
     files/scripts/MainMenu.js
     files/html/Profile.html
     pizza.h pizza.cpp
+
 )
 
 target_link_libraries(Server PRIVATE
@@ -45,8 +46,8 @@ qt_add_resources(Server "resource"
     files/html/laba_4.html files/html/laba_4_2.html files/html/laba_5.html files/html/laba_5_si.html
     files/html/laba_5_su.html files/html/Login.html files/html/MainMenu.html files/html/Order.html
     files/html/Register.html files/photos/BackgrShape.png files/photos/BackgrShapeC.png files/photos/BackgrShapeR.png
-    files/photos/Cart.png files/photos/DefaultPizza.jpg files/photos/Facebook.png
+    files/photos/Cart.png files/photos/DefaultPizza.png files/photos/Facebook.png
     files/photos/fish.png files/photos/Instagram.png files/photos/Phone.png files/photos/PizzaBackgr.png
-    files/scripts/MainMenu.js   files/html/Profile.html files/photos/diabolo.jpg files/photos/marg.jpg
-    files/photos/peperoni.jpg files/photos/veggie.png
+    files/scripts/MainMenu.js   files/html/Profile.html  files/photos/diabolo.png files/photos/four_cheese.png
+    files/photos/margh.png files/photos/pepperoni.png files/photos/veggie.png
 )

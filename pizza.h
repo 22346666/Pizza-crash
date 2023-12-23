@@ -14,7 +14,7 @@
 class Pizza
 {
 public:
-    QJsonObject get_json(const QSqlDatabase& db);
+    static QJsonObject get_json(const QSqlDatabase& db);
 };
 
 #endif // PIZZA_H

@@ -1,6 +1,7 @@
 #include "http_server.h"
 #include "cookie.h"
 #include "user.h"
+#include "pizza.h"
 
 Http_server::Http_server(QObject *parent)
     : QObject{parent}
@@ -27,7 +28,10 @@ void Http_server::route_pages() {
     });
 
     http_server.route("/order", [this](const QHttpServerRequest &request) {
-        return send_file(request, "Order.html", html_path);
+        if(has_id_cookie(request)) {
+            return send_file(request, "Order.html", html_path);
+        }
+        return QHttpServerResponse(read_file(html_path+"401.html"), QHttpServerResponse::StatusCode::Unauthorized);
     });
 
     http_server.route("/main_menu", [this](const QHttpServerRequest &request) {
@@ -35,16 +39,22 @@ void Http_server::route_pages() {
     });
 
     http_server.route("/sign_in", [this](const QHttpServerRequest &request) {
+        if(has_id_cookie(request)) {
+            return redirect(request, "/");
+        }
         return send_file(request, "Login.html", html_path);
     });
 
     http_server.route("/sign_up", [this](const QHttpServerRequest &request) {
+        if(has_id_cookie(request)) {
+            return redirect(request, "/");
+        }
         return send_file(request, "Register.html", html_path);
     });
 
-    http_server.route("/pizza", [this](const QHttpServerRequest &request) {
+    http_server.route("/profile", [this](const QHttpServerRequest &request) {
         if(has_id_cookie(request)) {
-            return send_file(request, "Home.html", html_path);
+            return send_file(request, "Profile.html", html_path);
         }
         return QHttpServerResponse(read_file(html_path+"401.html"), QHttpServerResponse::StatusCode::Unauthorized);
     });
@@ -58,7 +68,7 @@ void Http_server::route_pages() {
             Cookie cookie("email", user.get_email().toLatin1(), http_domain_name.toLatin1());
             QHttpServerResponse response(QHttpServerResponse::StatusCode::Ok);
             response.addHeader("Set-Cookie", cookie.get_raw_cookie());
-            return cookie_redirect(request, "/pizza", user.get_email().toLatin1());
+            return cookie_redirect(request, "/", user.get_email().toLatin1());
         }
         return redirect(request, "/sign_in");
     });
@@ -73,7 +83,7 @@ void Http_server::route_pages() {
         }
         if(user.password_check(db.db)) {
 
-            return cookie_redirect(request, "/pizza", user.get_email().toLatin1());
+            return cookie_redirect(request, "/", user.get_email().toLatin1());
         }
         return redirect(request, "/sign_in");
     });
@@ -91,6 +101,9 @@ void Http_server::route_pages() {
         return "Ok";
     });
 
+    http_server.route("/get/pizza", [this](const QHttpServerRequest &request) {
+        return send_json(request, Pizza::get_json(db.db));
+    });
 }
 
 void Http_server::route_scripts() {
@@ -268,6 +281,7 @@ bool Http_server::has_id_cookie(const QHttpServerRequest &request)
             return true;
         }
     }
+
     return false;
 }
 
