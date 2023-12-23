@@ -27,13 +27,13 @@ function CheckEmail()
     if(CookEmail===undefined)
     {
         document.getElementById("MenuModifiable").innerHTML=
-                '<h1><a href="Login.html" class="YellTextMain">Log in</a></h1>\
-            <h1><a href="Register.html" class="YellTextMain">Register</a></h1>';
+                '<h1><a href="https://pizzacrash.servebeer.com/sign_in" class="YellTextMain">Log in</a></h1>\
+            <h1><a href="https://pizzacrash.servebeer.com/sign_up" class="YellTextMain">Register</a></h1>';
     }
     else
     {
         document.getElementById("MenuModifiable").innerHTML=
-                '<h1><a href="Profile.html" class="YellTextMain">Profile</a></h1>\
+                '<h1><a href="https://pizzacrash.servebeer.com/profile" class="YellTextMain">Profile</a></h1>\
             <h1><a href="https://pizzacrash.servebeer.com/sign_in" class="YellTextMain" onclick="LogOut()">Log out</a></h1>';
 
 
