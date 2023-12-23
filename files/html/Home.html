@@ -69,9 +69,9 @@
 	</div>
 	
 	<div class="ScrPizzaSelector">
-		<p><input type="button" class="RoundButton" style="background-color:#e68a46;color:#000000;font-size:24" id="IncPizzas" value="+"></p>
+		<p><input type="button" class="RoundButton" style="background-color:#e68a46;color:#000000;font-size:24" id="IncPizzas" value="+", onclick="ChangePizza(1)"></p>
 		<p class="YellTextSecondary" id="PizzaCounter">count</p>
-		<p><input type="button" class="RoundButton" style="background-color:#e68a46;color:#000000;font-size:24" id="DecPizzas" value="-"></p>
+		<p><input type="button" class="RoundButton" style="background-color:#e68a46;color:#000000;font-size:24" id="DecPizzas" value="-", onclick="ChangePizza(-1)"></p>
 	</div>
 
 	<div class="ScrTopRight">
@@ -80,10 +80,10 @@
 	</div>
 
 	<div class="ScrLeftMiddle">
-		<input type="button" id="LButton" class="LeftButton" value="<">
+		<input type="button" id="LButton" class="LeftButton" value="<", onclick="scrollPizzas(-1)">
 	</div>
 	<div class="ScrRightMiddle">
-		<input type="button" id="RButton" class="RightButton" value=">">
+		<input type="button" id="RButton" class="RightButton" value=">", onclick="scrollPizzas(1)">
 	</div>
 
 	<!--
