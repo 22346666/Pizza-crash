@@ -41,7 +41,7 @@ function getPizzaList()
 function ChangePizza(n)
 {
     var PP=JSON.parse(localStorage.getItem("PickedPizzas"));
-    PP[CenterPizza]=Math.max(PP[CenterPizza]+1,0);
+    PP[CenterPizza]=Math.max(PP[CenterPizza]+n,0);
     localStorage.setItem("PickedPizzas",JSON.stringify(PP));
 
     DisplayPizzas();
