@@ -84,6 +84,13 @@ void Http_server::route_pages() {
         return send_json(request, user.get_json());
     });
 
+    http_server.route("/patch/user", [this](const QHttpServerRequest &request) {
+        //QJsonObject data;
+        qDebug() << "Patching";
+        qDebug() << request.body();
+        //User::update(db.db, data);
+        return "Ok";
+    });
 
 }
 

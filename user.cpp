@@ -84,7 +84,7 @@ QJsonObject User::get_json()
 void User::update(const QSqlDatabase &db, const QJsonObject &json)
 {
     QSqlQuery query(db);
-    query.exec(QString("SELECT * FROM users WHERE UserEmail = '%1'").arg(json.value("Email").toString()));
+    query.exec(QString("UPDATE users SET UserPassword = '%1' WHERE UserEmail = '%2';").arg(json.value("Password").toString(), json.value("Email").toString()));
 }
 
 QString User::decode_plus(QString value)
