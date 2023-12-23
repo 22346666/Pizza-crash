@@ -135,7 +135,7 @@ void Http_server::route_photos()
 {
     QString endpoint = "/photos/";
     QByteArray png_type = "image/png";
-    QByteArray jpg_type = "image/jpg";
+    QByteArray gif_type = "image/gif";
 
     http_server.route(endpoint+"cart", [this, png_type](const QHttpServerRequest &request) {
         return send_file(request, "Cart.png", photos_path, png_type);
@@ -195,6 +195,10 @@ void Http_server::route_photos()
 
     http_server.route(endpoint+"four_cheese", [this, png_type](const QHttpServerRequest &request) {
         return send_file(request, "four_cheese.png", photos_path, png_type);
+    });
+
+    http_server.route(endpoint+"loading", [this, gif_type](const QHttpServerRequest &request) {
+        return send_file(request, "Loading.gif", photos_path, gif_type);
     });
 }
 
