@@ -35,7 +35,7 @@ function GetOrder()
             {
                 if(PickedPizzas[i]>0)
                 {
-                     document.getElementById("OrderList").innerHTML+="<p><img src="+PList.Pizzas[i]["Image link"]+"style='max-width:100;'>"+
+                     document.getElementById("OrderList").innerHTML+="<p><img src='"+PList.Pizzas[i]["Image link"]+"' style='max-width:100;'>"+
                        PList.Pizzas[i]["Name"]+
                        " x"+PickedPizzas[i]+": "+
                        PList.Pizzas[i]["Cost"]*PickedPizzas[i]+"₴</p>"
@@ -48,4 +48,16 @@ function GetOrder()
             console.error("Error: " + textStatus);
         });
     });
+}
+
+function SendOrder()
+{
+  var OrderObj=new Object();
+  OrderObj["Email"]=;
+  OrderObj["Address"]=;
+  OrderObj["Summ"]=;
+  OrderObj["Date"]=;
+  $.post("https://pizzacrash.servebeer.com/post/order",
+    
+  )
 }
