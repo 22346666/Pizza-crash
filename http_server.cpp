@@ -141,8 +141,8 @@ void Http_server::route_photos()
         return send_file(request, "fish.png", photos_path, png_type);
     });
 
-    http_server.route(endpoint+"default_pizza", [this, jpg_type](const QHttpServerRequest &request) {
-        return send_file(request, "DefaultPizza.jpg", photos_path, jpg_type);
+    http_server.route(endpoint+"default_pizza", [this, png_type](const QHttpServerRequest &request) {
+        return send_file(request, "DefaultPizza.png", photos_path, png_type);
     });
 
     http_server.route(endpoint+"facebook", [this, png_type](const QHttpServerRequest &request) {
@@ -159,6 +159,26 @@ void Http_server::route_photos()
 
     http_server.route(endpoint+"pizza_background", [this, png_type](const QHttpServerRequest &request) {
         return send_file(request, "PizzaBackgr.png", photos_path, png_type);
+    });
+
+    http_server.route(endpoint+"margh", [this, png_type](const QHttpServerRequest &request) {
+        return send_file(request, "margh.png", photos_path, png_type);
+    });
+
+    http_server.route(endpoint+"diabolo", [this, png_type](const QHttpServerRequest &request) {
+        return send_file(request, "diabolo.png", photos_path, png_type);
+    });
+
+    http_server.route(endpoint+"veggie", [this, png_type](const QHttpServerRequest &request) {
+        return send_file(request, "veggie.png", photos_path, png_type);
+    });
+
+    http_server.route(endpoint+"pepperoni", [this, png_type](const QHttpServerRequest &request) {
+        return send_file(request, "pepperoni.png", photos_path, png_type);
+    });
+
+    http_server.route(endpoint+"four_cheese", [this, png_type](const QHttpServerRequest &request) {
+        return send_file(request, "four_cheese.png", photos_path, png_type);
     });
 }
 
