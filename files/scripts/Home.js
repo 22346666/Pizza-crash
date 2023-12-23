@@ -1,7 +1,7 @@
 let CenterPizza=0;
 let LeftPizza=0;
 let RightPizza=0;
-const MaxPizzas=5;
+let MaxPizzas=5;
 
 function getPizzaList()
 {
@@ -20,10 +20,11 @@ function getPizzaList()
             CenterPizza=0;
             scrollPizzas(0);
 
+            MaxPizzas=JSON.parse(localStorage.getItem("PizzaArray")).Pizzas.length;
             if(localStorage.getItem("PickedPizzas")==null)
             {
                 var temp=[];
-                for(let i=0;i<JSON.parse(localStorage.getItem("PizzaArray")).Pizzas.length;i++)
+                for(let i=0;i<MaxPizzas;i++)
                     temp.push(0);   
                 localStorage.setItem("PickedPizzas",JSON.stringify(temp));
             }
@@ -40,7 +41,10 @@ function getPizzaList()
 function ChangePizza(n)
 {
     var PP=JSON.parse(localStorage.getItem("PickedPizzas"));
-    PP
+    PP[CenterPizza]=Math.max(PP[CenterPizza]+1,0);
+    localStorage.setItem("PickedPizzas",JSON.stringify(PP));
+
+    DisplayPizzas();
 }
 
 function mod(n, m)
@@ -66,7 +70,15 @@ function DisplayPizzas()
     document.getElementById("CenterName").innerHTML=PList.Pizzas[CenterPizza]["Name"];
     document.getElementById("RightName").innerHTML=PList.Pizzas[RightPizza]["Name"];
 
-     document.getElementById("LeftPrice").innerHTML=PList.Pizzas[LeftPizza]["Cost"];
+    document.getElementById("LeftPrice").innerHTML=PList.Pizzas[LeftPizza]["Cost"];
     document.getElementById("CenterPrice").innerHTML=PList.Pizzas[CenterPizza]["Cost"];
     document.getElementById("RightPrice").innerHTML=PList.Pizzas[RightPizza]["Cost"];
+
+    document.getElementById("PizzaCounter").innerHTML=JSON.parse(localStorage.getItem("PickedPizzas"))[CenterPizza];
+
+    let TotalCounter=0;
+    var PP=JSON.parse(localStorage.getItem("PickedPizzas"));
+    for(var i=0;i<MaxPizzas;i++)
+        TotalCounter+=PP[i];
+     document.getElementById("TotalCounter").innerHTML="0x"+(TotalCounter);
 }
