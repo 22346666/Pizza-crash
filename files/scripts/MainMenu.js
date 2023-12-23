@@ -1,5 +1,5 @@
 //import Cookies from 'js-cookie'
-
+/*
 function getCookie(name) {
     var dc = document.cookie;
     var prefix = name + "=";
@@ -20,11 +20,11 @@ function getCookie(name) {
     //return unescape(dc.substring(begin + prefix.length, end));
     return decodeURI(dc.substring(begin + prefix.length, end));
 } 
-
+*/
 function CheckEmail()
 {
-	let CookEmail=getCookie("email");
-	if(CookEmail==null)
+	let CookEmail=Cookies.get("email");
+	if(CookEmail=='')
 	{
 		document.getElementById("MenuModifiable").innerHTML=
 			'<h1><a href="Login.html" class="YellTextMain">Log in</a></h1>\
