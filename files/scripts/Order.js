@@ -25,6 +25,7 @@ function GetOrder()
             }
             var PickedPizzas=localStorage.getItem("PickedPizzas");
             var PList=JSON.parse(localStorage.getItem("PizzaArray"));
+            TotalPrice=0;
             for(var i=0;i<MaxPizzas;i++)
             {
               TotalPrice+=PList.Pizzas[i]["Cost"]*PickedPizzas[i];
