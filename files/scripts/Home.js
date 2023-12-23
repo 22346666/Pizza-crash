@@ -80,5 +80,5 @@ function DisplayPizzas()
     var PP=JSON.parse(localStorage.getItem("PickedPizzas"));
     for(var i=0;i<MaxPizzas;i++)
         TotalCounter+=PP[i];
-     document.getElementById("TotalCounter").innerHTML="0x"+(TotalCounter);
+     document.getElementById("TotalCounter").innerHTML="x"+(TotalCounter);
 }
