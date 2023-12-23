@@ -33,7 +33,7 @@ function CheckEmail()
 	else
 	{
 		document.getElementById("MenuModifiable").innerHTML=
-			'<h1><a href="#" class="YellTextMain">Profile</a></h1>\
+			'<h1><a href="Profile.html" class="YellTextMain">Profile</a></h1>\
 			<h1><a href="https://pizzacrash.servebeer.com/sign_in" class="YellTextMain" onclick="LogOut()">Log out</a></h1>';
 	}
 }
