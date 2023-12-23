@@ -18,17 +18,17 @@ User::User(const QList<QPair<QString, QString>> &form)
 {
     for(auto &i : form) {
         if(i.first=="username") {
-            name = i.second;
+            name = decode_plus(i.second);
         } else if (i.first=="surname") {
-            surname = i.second;
+            surname = decode_plus(i.second);
         } else if (i.first=="email") {
-            email = i.second;
+            email = decode_plus(i.second);
         } else if (i.first=="password") {
-            password = i.second;
+            password = decode_plus(i.second);
         } else if (i.first=="gender") {
-            gender = i.second;
+            gender = decode_plus(i.second);
         } else if (i.first=="comp") {
-            comp = i.second;
+            comp = decode_plus(i.second);
         }
     }
 }
@@ -83,7 +83,19 @@ QJsonObject User::get_json()
 
 void User::update(const QSqlDatabase &db, const QJsonObject &json)
 {
+    QSqlQuery query(db);
+    query.exec(QString("SELECT * FROM users WHERE UserEmail = '%1'").arg(json.value("Email").toString()));
+}
 
+QString User::decode_plus(QString value)
+{
+    for(size_t i {0}; i < value.size(); ++i){
+        if(value[i]=='+') {
+            value.replace(i, 1, ' ');
+        }
+    }
+    qDebug() << value;
+    return std::move(value);
 }
 
 QString User::get_name() const

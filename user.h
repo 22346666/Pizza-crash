@@ -20,6 +20,7 @@ public:
     bool password_check(const QSqlDatabase& db);
     QJsonObject get_json();
     void update(const QSqlDatabase& db, const QJsonObject& json);
+    QString decode_plus(QString value);
 
     QString get_name() const;
 
