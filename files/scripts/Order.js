@@ -23,12 +23,13 @@ function GetOrder()
                     temp.push(0);   
                 localStorage.setItem("PickedPizzas",JSON.stringify(temp));
             }
-            var PickedPizzas=localStorage.getItem("PickedPizzas");
+            var PickedPizzas=JSON.parse(localStorage.getItem("PickedPizzas"));
             var PList=JSON.parse(localStorage.getItem("PizzaArray"));
-            TotalPrice=0;
+            //TotalPrice=0;
             for(var i=0;i<MaxPizzas;i++)
             {
-              TotalPrice+=PList.Pizzas[i]["Cost"]*PickedPizzas[i];
+              TotalPrice+=Number(PList.Pizzas[i]["Cost"])*PickedPizzas[i];
+              console.log(Number(PList.Pizzas[i]["Cost"]),PickedPizzas[i]);
             }
             document.getElementById("TotalPrice").innerHTML="TOTAL: "+TotalPrice+"₴";
             document.getElementById("OrderList").innerHTML="";
