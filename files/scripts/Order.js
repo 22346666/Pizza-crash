@@ -29,7 +29,7 @@ function GetOrder()
             for(var i=0;i<MaxPizzas;i++)
             {
               TotalPrice+=Number(PList.Pizzas[i]["Cost"])*PickedPizzas[i];
-              console.log(Number(PList.Pizzas[i]["Cost"]),PickedPizzas[i]);
+              //console.log(Number(PList.Pizzas[i]["Cost"]),PickedPizzas[i]);
             }
             document.getElementById("TotalPrice").innerHTML="TOTAL: "+TotalPrice+"₴";
             document.getElementById("OrderList").innerHTML="";
@@ -58,7 +58,7 @@ function SendOrder()
   var OrderObj=new Object();
   OrderObj["Email"]=Cookies.get("email");
   OrderObj["Address"]=document.getElementById("DeliveryAddress").value;
-  OrderObj["Summ"]=TotalPrice;
+  OrderObj["Summ"]=TotalPrice.toString();
   OrderObj["Date"]=currentdate.getFullYear() + "-" +
                        ('0' + (currentdate.getMonth()+1)).slice(-2)  + "-"+
                        ('0' + currentdate.getDate()).slice(-2) + " "  + 
