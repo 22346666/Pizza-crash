@@ -1,7 +1,7 @@
-var CenterPizza=0;
-var LeftPizza=0;
-var RightPizza=0;
-var MaxPizzas=0;
+let CenterPizza=0;
+let LeftPizza=0;
+let RightPizza=0;
+const MaxPizzas=5;
 
 function getPizzaList()
 {
@@ -17,7 +17,16 @@ function getPizzaList()
         request.done(function(data) {
             //console.log("Data:", data);
             localStorage.setItem("PizzaArray",JSON.stringify(data));
-            console.log(JSON.stringify(data));
+            CenterPizza=0;
+            scrollPizzas(0);
+
+            if(localStorage.getItem("PickedPizzas")==null)
+            {
+                var temp=[];
+                for(let i=0;i<JSON.parse(localStorage.getItem("PizzaArray")).Pizzas.length;i++)
+                    temp.push(0);   
+                localStorage.setItem("PickedPizzas",JSON.stringify(temp));
+            }
             // Здесь вы можете обработать полученные данные
         });
 
@@ -30,7 +39,8 @@ function getPizzaList()
 
 function ChangePizza(n)
 {
-
+    var PP=JSON.parse(localStorage.getItem("PickedPizzas"));
+    PP
 }
 
 function mod(n, m)
@@ -42,7 +52,21 @@ function scrollPizzas(n)
     CenterPizza=mod(CenterPizza+n,MaxPizzas);
     LeftPizza=mod(CenterPizza-1,MaxPizzas);
     RightPizza=mod(CenterPizza+1,MaxPizzas);
-    document.getElementById("LeftPic").src=pizzaResp[LeftPizza]["Image link"];
-    document.getElementById("CenterPic").src=pizzaResp[CenterPizza]["Image link"];
-    document.getElementById("RightPic").src=pizzaResp[RightPizza]["Image link"];
+    DisplayPizzas();
+}
+
+function DisplayPizzas()
+{
+    var PList=JSON.parse(localStorage.getItem("PizzaArray"));
+    document.getElementById("LeftPic").src=PList.Pizzas[LeftPizza]["Image link"];
+    document.getElementById("CenterPic").src=PList.Pizzas[CenterPizza]["Image link"];
+    document.getElementById("RightPic").src=PList.Pizzas[RightPizza]["Image link"];
+
+    document.getElementById("LeftName").innerHTML=PList.Pizzas[LeftPizza]["Name"];
+    document.getElementById("CenterName").innerHTML=PList.Pizzas[CenterPizza]["Name"];
+    document.getElementById("RightName").innerHTML=PList.Pizzas[RightPizza]["Name"];
+
+     document.getElementById("LeftPrice").innerHTML=PList.Pizzas[LeftPizza]["Cost"];
+    document.getElementById("CenterPrice").innerHTML=PList.Pizzas[CenterPizza]["Cost"];
+    document.getElementById("RightPrice").innerHTML=PList.Pizzas[RightPizza]["Cost"];
 }
