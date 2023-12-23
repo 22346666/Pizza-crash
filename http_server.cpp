@@ -58,7 +58,7 @@ void Http_server::route_pages() {
             Cookie cookie("email", user.get_email().toLatin1(), http_domain_name.toLatin1());
             QHttpServerResponse response(QHttpServerResponse::StatusCode::Ok);
             response.addHeader("Set-Cookie", cookie.get_raw_cookie());
-            return cookie_redirect(request, "/laba_5/page", user.get_email().toLatin1());
+            return cookie_redirect(request, "/pizza", user.get_email().toLatin1());
         }
         return redirect(request, "/sign_in");
     });

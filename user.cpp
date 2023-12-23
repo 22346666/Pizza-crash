@@ -41,7 +41,7 @@ bool User::create(const QSqlDatabase &db)
     if(!check_exist(db)) {
         QSqlQuery query(db);
         query.exec(QString("INSERT INTO users (UserName, UserSurname, UserEmail, UserPassword) values ('%1', '%2', '%3', '%4')").arg(name, surname, email, password));
-        qInfo() << query.lastError();
+        qInfo() << query.lastError().text();
         return true;
     }
     return false;
