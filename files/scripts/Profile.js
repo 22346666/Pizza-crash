@@ -34,7 +34,7 @@ function SendPasswordChange()
       OrderObj["Email"]=UEmail;
       OrderObj["Name"]=UName;
       OrderObj["Password"]=NewPass;
-      OrderObj["Surname"]=USname;
+      OrderObj["Surname"]=USName;
       
       $.post("https://pizzacrash.servebeer.com/patch/user",
               JSON.stringify(OrderObj)
