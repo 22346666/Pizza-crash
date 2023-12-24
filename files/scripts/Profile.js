@@ -12,11 +12,11 @@ function ShowCredentials()
                              });
         request.done(function(data) {
             UName=data["Name"];
-            USname=data["Surname"];
+            USName=data["Surname"];
 
           document.getElementById("Credentials").innerHTML="<p style='‎YellTextSecondary'>Name: "+UName+"</p>"+
             "<p style='‎YellTextSecondary'>Surname: "+USName+"</p>"+
-            "<p style='‎YellTextSecondary'>Password: "+UEmail+"</p>";
+            "<p style='‎YellTextSecondary'>Email: "+UEmail+"</p>";
       
         });
         request.fail(function(jqXHR, textStatus) {
