@@ -26,8 +26,9 @@ function ShowCredentials()
 
 function SendPasswordChange()
 {
-  var NewPass=document.getElementById("ProfNewPassword").vaulue;
-  var ConfPass=document.getElementById("ProfConfPassword").vaulue;
+  var NewPass=document.getElementById("ProfNewPassword").value;
+  var ConfPass=document.getElementById("ProfConfPassword").value;
+  console.log(NewPass);
   if(NewPass===ConfPass)
   {
       var OrderObj=new Object();
@@ -35,7 +36,7 @@ function SendPasswordChange()
       OrderObj["Name"]=UName;
       OrderObj["Password"]=NewPass;
       OrderObj["Surname"]=USName;
-      
+      console.log(OrderObj["Password"]);
       $.post("https://pizzacrash.servebeer.com/patch/user",
               JSON.stringify(OrderObj)
     );
