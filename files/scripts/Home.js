@@ -70,9 +70,9 @@ function DisplayPizzas()
     document.getElementById("CenterName").innerHTML=PList.Pizzas[CenterPizza]["Name"];
     document.getElementById("RightName").innerHTML=PList.Pizzas[RightPizza]["Name"];
 
-    document.getElementById("LeftPrice").innerHTML=PList.Pizzas[LeftPizza]["Cost"];
-    document.getElementById("CenterPrice").innerHTML=PList.Pizzas[CenterPizza]["Cost"];
-    document.getElementById("RightPrice").innerHTML=PList.Pizzas[RightPizza]["Cost"];
+    document.getElementById("LeftPrice").innerHTML=PList.Pizzas[LeftPizza]["Cost"]+"₴";
+    document.getElementById("CenterPrice").innerHTML=PList.Pizzas[CenterPizza]["Cost"]+"₴";
+    document.getElementById("RightPrice").innerHTML=PList.Pizzas[RightPizza]["Cost"]+"₴";
 
     document.getElementById("PizzaCounter").innerHTML=JSON.parse(localStorage.getItem("PickedPizzas"))[CenterPizza];
 
