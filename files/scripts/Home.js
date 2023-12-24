@@ -3,6 +3,16 @@ let LeftPizza=0;
 let RightPizza=0;
 let MaxPizzas=5;
 
+function checkPicked() {
+    if(localStorage.getItem("PickedPizzas")==null)
+    {
+        var temp=[];
+        for(let i=0;i<MaxPizzas;i++)
+            temp.push(0);
+        localStorage.setItem("PickedPizzas",JSON.stringify(temp));
+    }
+}
+
 function getPizzaList()
 {
     $(document).ready(function(){
@@ -21,13 +31,7 @@ function getPizzaList()
             scrollPizzas(0);
 
             MaxPizzas=JSON.parse(localStorage.getItem("PizzaArray")).Pizzas.length;
-            if(localStorage.getItem("PickedPizzas")==null)
-            {
-                var temp=[];
-                for(let i=0;i<MaxPizzas;i++)
-                    temp.push(0);   
-                localStorage.setItem("PickedPizzas",JSON.stringify(temp));
-            }
+
             // Здесь вы можете обработать полученные данные
         });
 
