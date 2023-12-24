@@ -12,7 +12,7 @@ function ShowCredentials()
                              });
         request.done(function(data) {
             UName=data["Name"];
-            USname=data["Surname"];
+            USName=data["Surname"];
 
           document.getElementById("Credentials").innerHTML="<p style='‎YellTextSecondary'>Name: "+UName+"</p>"+
             "<p style='‎YellTextSecondary'>Surname: "+USName+"</p>"+
