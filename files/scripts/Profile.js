@@ -38,7 +38,7 @@ function SendPasswordChange()
       
       $.post("https://pizzacrash.servebeer.com/patch/user",
               JSON.stringify(OrderObj)
-    });
+    );
   }
   else
   {
