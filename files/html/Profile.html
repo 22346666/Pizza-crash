@@ -24,13 +24,15 @@
 	<link rel="stylesheet" href="https://pizzacrash.servebeer.com/styles/pizza">
 </head>
 
-<body>
+<body onload="ShowCredentials()">
 	<div class="ScrRightCenterB">
 		<h1 class="YellTextSecondary">Your profile</h1>
+		<div id="Credentials">
+		</div>
 		<form action="" method="post">
 			<input type="password" id="ProfNewPassword" placeholder="Enter a new password"></br></br>
      			<input type="password" id="ProfConfPassword" placeholder="Confirm the password"></br></br>
-			<input type="submit" class="LogRegButton" id="ChangePassButton" Value="Change password">
+			<input type="submit" class="LogRegButton" id="ChangePassButton" Value="Change password" onclick="SendPasswordChange()">
 		</form>
 	</div>
 	<div class="BottomLeftIcons">
