@@ -17,6 +17,7 @@ qt_add_executable(Server
     pizza.h pizza.cpp
 
 
+
 )
 
 target_link_libraries(Server PRIVATE
@@ -55,4 +56,5 @@ qt_add_resources(Server "resource"
     files/scripts/Home.js
     files/scripts/MainMenu.js
     files/scripts/Order.js
+    files/scripts/Profile.js
 )
