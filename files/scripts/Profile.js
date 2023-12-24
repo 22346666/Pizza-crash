@@ -28,6 +28,8 @@ function SendPasswordChange()
 {
   var NewPass=document.getElementById("ProfNewPassword").value;
   var ConfPass=document.getElementById("ProfConfPassword").value;
+  if((NewPass!=="")&&(NewPass!=null)&&(ConfPass!=="")&&(ConfPass!=null))
+  {
   if(NewPass===ConfPass)
   {
       var OrderObj=new Object();
@@ -44,4 +46,7 @@ function SendPasswordChange()
   {
     window.alert("Passwords don't match!");
   }
+  }
+  else
+  {window.alert("Please enter all of the fields!")}
 }
