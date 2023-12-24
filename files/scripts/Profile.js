@@ -26,8 +26,8 @@ function ShowCredentials()
 
 function SendPasswordChange()
 {
-  var NewPass=document.getElementById("ProfNewPassword").vaulue;
-  var ConfPass=document.getElementById("ProfConfPassword").vaulue;
+  var NewPass=document.getElementById("ProfNewPassword").value;
+  var ConfPass=document.getElementById("ProfConfPassword").value;
   if(NewPass===ConfPass)
   {
       var OrderObj=new Object();
