@@ -42,6 +42,28 @@ function CheckEmail()
 
 function LogOut()
 {
+    var request = $.ajax({
+                                 url: "https://pizzacrash.servebeer.com/get/pizza",
+                                 method: "GET",
+                                 dataType: "json"
+                             });
+
+
+        request.done(function(data) {
+            var MaxPizzas=JSON.parse(localStorage.getItem("PizzaArray")).Pizzas.length;
+                var temp=[];
+                for(let i=0;i<MaxPizzas;i++)
+                    temp.push(0);   
+                localStorage.setItem("PickedPizzas",JSON.stringify(temp));
+            
+            
+        });
+
+
+        request.fail(function(jqXHR, textStatus) {
+            console.error("Error: " + textStatus);
+        });
+    });
     Cookies.remove('email', { path: '', domain: 'pizzacrash.servebeer.com' })
     location.reload();
 }
