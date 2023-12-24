@@ -17,7 +17,7 @@ function ShowCredentials()
           document.getElementById("Credentials").innerHTML="<p style='‎YellTextSecondary'>Name: "+UName+"</p>"+
             "<p style='‎YellTextSecondary'>Surname: "+USName+"</p>"+
             "<p style='‎YellTextSecondary'>Password: "+UEmail+"</p>";
-      )
+      
         });
         request.fail(function(jqXHR, textStatus) {
             console.error("Error: " + textStatus);
