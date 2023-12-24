@@ -63,7 +63,7 @@ function LogOut()
         request.fail(function(jqXHR, textStatus) {
             console.error("Error: " + textStatus);
         });
-    });
+    };
     Cookies.remove('email', { path: '', domain: 'pizzacrash.servebeer.com' })
     location.reload();
 }
