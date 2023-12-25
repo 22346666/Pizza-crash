@@ -98,6 +98,33 @@ void User::create_order(const QSqlDatabase &db, const QJsonObject &json)
     qDebug() << query.lastError().text();
 }
 
+QJsonObject User::get_order_json(const QSqlDatabase& db, const QString &email)
+{
+    QSqlQuery query(db);
+    query.exec(QString("SELECT UserID FROM users WHERE UserEmail = '%1'").arg(email));
+    query.next();
+    QString id;
+    if(query.isValid()) {
+        id = query.value(0).toString();
+    }
+    QJsonObject json;
+    if(!id.isEmpty()) {
+        query.exec(QString("SELECT OrderDate, OrderAddress, OrderSumm FROM orders WHERE UserID = '%1' ORDER BY OrderID desc").arg(id));
+        QJsonArray orders;
+        for(size_t i {0}; query.next() && i < 15; ++i) {
+            QJsonObject order;
+            order.insert("Date", query.value(0).toString());
+            order.insert("Address", query.value(1).toString());
+            order.insert("Summ", query.value(2).toString());
+            orders.push_back(order);
+        }
+        json.insert("Orders", orders);
+    } else {
+        json.insert("Orders", id);
+    }
+    return std::move(json);
+}
+
 QString User::decode_plus(QString value)
 {
     for(size_t i {0}; i < value.size(); ++i){

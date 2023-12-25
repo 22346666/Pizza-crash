@@ -112,6 +112,11 @@ void Http_server::route_pages() {
         User::create_order(db.db, data.object());
         return "Ok";
     });
+
+    http_server.route("/get/orders/<arg>", [this](const QString email, const QHttpServerRequest &request) {
+        qDebug() << email;
+        return send_json(request, User::get_order_json(db.db, email));
+    });
 }
 
 void Http_server::route_scripts() {

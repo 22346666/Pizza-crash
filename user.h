@@ -20,7 +20,16 @@ public:
     bool password_check(const QSqlDatabase& db);
     QJsonObject get_json();
     static void update(const QSqlDatabase& db, const QJsonObject& json);
+
+
+
+
     static void create_order(const QSqlDatabase& db, const QJsonObject& json);
+    static QJsonObject get_order_json(const QSqlDatabase& db, const QString& email);
+
+
+
+
     QString decode_plus(QString value);
 
     QString get_name() const;
