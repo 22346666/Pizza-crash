@@ -1,4 +1,3 @@
-var TotalPrice=0;
 var UEmail;
 var UHistory;
 
