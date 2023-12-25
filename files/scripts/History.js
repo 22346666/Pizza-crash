@@ -19,7 +19,7 @@ function GetHistory()
           {
             document.getElementById("OrderHistory").innerHTML='';
             let i=1;
-            let TableContents="<table><tr><th>№</th><th>Date</th><th>Address</th><th>Sum</th></tr>";
+            let TableContents="<table class=\"YellTextSecondary\"><tr><th>№</th><th>Date</th><th>Address</th><th>Sum</th></tr>";
             for(i=0;i<UHistory["Orders"].length;i++)
             {
               TableContents+="<tr>"+
