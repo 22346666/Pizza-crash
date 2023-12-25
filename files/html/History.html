@@ -1,0 +1,54 @@
+<html>
+
+<style>
+	.ScrMiddleTop{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 10%;
+		left: 50%;
+		-ms-transform: translateX(-50%) translateY(0%);
+		-webkit-transform: translate(-50%,0%);
+		transform: translate(-50%,0%);
+		text-align: center;
+	}
+	.ScrMiddleBottom{
+		color: white;
+		padding: 15px;
+		position: absolute;
+		top: 75%;
+		left: 50%;
+		-ms-transform: translateX(-50%) translateY(0%);
+		-webkit-transform: translate(-50%,0%);
+		transform: translate(-50%,0%);
+		text-align: center;
+	}
+</style>
+
+<head>
+	<meta charset="utf-8">
+	<title>Order history</title>
+	<link rel="stylesheet" href="https://pizzacrash.servebeer.com/styles/pizza">
+</head>
+
+<body onload="GetOrder()">
+	<script src="https://pizzacrash.servebeer.com/scripts/history"></script>
+	<script type="module" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+	<div class="ScrMiddleTop">
+		<h1 class="YellTextMain">Your order history</h1>
+		<div id="OrderHistory">*Order hist*</div>
+
+		</div>
+
+	<div class="BottomLeftIcons">
+        <p><a href="https://www.whatsapp.com/pizza_crash"><img src="https://pizzacrash.servebeer.com/photos/phone" alt="Phone" class="RoundImage"></a></p>
+        <p><a href="https://www.facebook.com/pizza_crash"><img src="https://pizzacrash.servebeer.com/photos/facebook" alt="Facebook" class="RoundImage"></a></p>
+        <p><a href="https://www.instagram.com/pizza-crash/"><img src="https://pizzacrash.servebeer.com/photos/instagram" alt="Instagram" class="RoundImage"></a></p>
+	</div>
+	<div class="ScrTopLeft">
+		<h2><a class="YellTextMain" href="https://pizzacrash.servebeer.com/main_menu">PIZZA CRASH</a></h2>
+	</div>
+</body>
+</html>
