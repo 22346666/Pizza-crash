@@ -30,7 +30,7 @@ function GetHistory()
                 "</tr>";
             }
             TableContents+="</table>"
-            console.log(TableContents);
+            /*console.log(TableContents);*/
             document.getElementById("OrderHistory").innerHTML+=TableContents;
           }
           else
